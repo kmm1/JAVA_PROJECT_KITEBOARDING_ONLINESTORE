@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by Kate M on 19.03.2018.
  */
 public class FileUploadUtility {
-    private static final String ABS_PATH = "C:\\Users\\Tom\\IdeaProjects\\store\\web\\src\\main\\webapp\\resources\\images\\";
+    private static final String ABS_PATH = "C:\\Users\\Tom\\IdeaProjects\\store-master\\web\\src\\main\\webapp\\resources\\images\\";
     private static String REAL_PATH;
 
     public static void uploadFile(HttpServletRequest req, MultipartFile multipartFile) {
