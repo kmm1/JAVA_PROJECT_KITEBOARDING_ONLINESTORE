@@ -19,14 +19,14 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/cart")
-public class OrderController {
+public class CartController {
 
     private UserService userService;
     private OrderService orderService;
     private UserDto userDto;
 
     @Autowired
-    public OrderController(UserService userService, OrderService orderService, UserDto userDto) {
+    public CartController(UserService userService, OrderService orderService, UserDto userDto) {
         this.userService = userService;
         this.orderService = orderService;
         this.userDto = userDto;
@@ -35,12 +35,11 @@ public class OrderController {
     @ModelAttribute("infoAboutProductsInCart")
     public Map<Product, Integer> showProductsInCart() {
         Map<Product, Integer> infoAboutProductsInCart = orderService.findInfoAboutProductsInCart(4L);
-        Double cartTotal = orderService.findCartTotal(4L);
-        System.out.println("333----------------------------");
-        System.out.println(infoAboutProductsInCart);
-        System.out.println(infoAboutProductsInCart.size());
+
         return infoAboutProductsInCart;
     }
+
+
 
     @ModelAttribute("cartTotal")
     public Double showCrtTotal() {

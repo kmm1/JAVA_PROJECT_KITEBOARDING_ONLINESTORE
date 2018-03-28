@@ -43,7 +43,7 @@ CREATE TABLE product (
   id               INT AUTO_INCREMENT,
   name             VARCHAR(255),
   description      TEXT,
-  price            VARCHAR(10),
+  price            DECIMAL,
   amount_available INT,
   availability     VARCHAR(10),
   image_url        TEXT,
@@ -63,9 +63,10 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE product_orders (
+  id         INT       AUTO_INCREMENT,  #нужно чтоб вставлять дублирующие данные
   product_id INT,
   order_id   INT,
-  PRIMARY KEY (product_id, order_id),
+  PRIMARY KEY (id),
   FOREIGN KEY (product_id) REFERENCES product (id),
   FOREIGN KEY (order_id) REFERENCES orders (id)
 );
@@ -81,17 +82,18 @@ CREATE TABLE review (
   FOREIGN KEY (product_id) REFERENCES product (id)
 );
 
+
 INSERT INTO user (name, email, password, role, enabled) VALUES ('admin', 'km@gmail.com',
                                                                 '$2a$10$mJ9BoO..coAAIAl.KKrHluCx/pgPN18VkPzJ7m/osxJebvbQEX20W',
                                                                 'ADMIN', 1);
 INSERT INTO user (name, email, password, role, enabled) VALUES ('user1', 'user1@gmail.com',
-                                                                '$2a$10$yJbb9W1Q8ETN8xsHB.I5A.Ract35ygslJjdGyP.lYsckqVAPOfFKS',
+                                                                '$2y$10$jIh0Nvb6yQ2/.eXnsztZNuhuDdE.hTtLa/fEEC/cd5zp/NctDR5dm',
                                                                 'USER', 1);
 INSERT INTO user (name, email, password, role, enabled) VALUES ('user2', 'user2@gmail.com',
-                                                                '$2a$10$yJbb9W1Q8ETN8xsHB.I5A.Ract35ygslJjdGyP.lYsckqVAPOfFKS',
+                                                                '$2y$10$jIh0Nvb6yQ2/.eXnsztZNuhuDdE.hTtLa/fEEC/cd5zp/NctDR5dm',
                                                                 'USER', 1);
 # password for admin in BCRYPT: admin
-# password for users in BCRYPT: smth
+# password for users in BCRYPT: 11111
 
 INSERT INTO address (recieverName, recieverLastName, addressLineOne, addressLineTwo, city, state, country, zip, telephone, additionalInfo, user_id)
 VALUES
@@ -125,16 +127,23 @@ VALUES ('Tride-NBL', 'The NBL is the classic, all-round Nobile board', 479.00, 2
 INSERT INTO review (user_id, product_id, content) VALUES (2, 1, 'this is my favorite kite');
 INSERT INTO review (user_id, product_id, content) VALUES (3, 1, 'my best kite');
 
-INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-01 00:00:00', 'ACCEPTED');
-INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-01 00:00:00', 'ACCEPTED');
+INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-01 00:00:00', 'DELIVERED');
+INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-01 00:00:00', 'SHIPPED');
 INSERT INTO orders (user_id, address_id, order_date, status) VALUES (3, 2, '2000-01-01 00:00:00', 'PAID');
-INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-02 00:00:00', 'ACCEPTED');
-INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-01 00:00:00', 'ACCEPTED');
+INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-02 00:00:00', 'DECLINED');
+
+
 
 INSERT INTO product_orders (product_id, order_id) VALUES (1, 1);
 INSERT INTO product_orders (product_id, order_id) VALUES (2, 2);
 INSERT INTO product_orders (product_id, order_id) VALUES (1, 3);
 INSERT INTO product_orders (product_id, order_id) VALUES (2, 4);
-INSERT INTO product_orders (product_id, order_id) VALUES (2, 5);
+
+INSERT INTO orders (user_id, address_id, order_date, status) VALUES (2, 1, '2000-01-01 00:00:00', 'NEW');
+INSERT INTO product_orders (product_id, order_id ) VALUES (2, 5);
+INSERT INTO product_orders (product_id, order_id ) VALUES (3, 5);
+INSERT INTO product_orders (product_id, order_id) VALUES (4, 5);
+
+
 
 
