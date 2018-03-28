@@ -48,4 +48,19 @@ public class OrderServiceImpl extends BaseServiceImpl<Orders> implements OrderSe
         return orderDao.findInfoAboutProductsInCart(id);
     }
 
+    @Override
+    public void updateProductsInUserCart(String userName, Long productId, int amountToUpdate) {
+        orderDao.updateProductsInUserCart(userName, productId, amountToUpdate);
+    }
+
+    @Override
+    public void deleteProductsInUserCart(String userName, Long productId) {
+        orderDao.deleteProductsInUserCart(userName, productId);
+    }
+
+    @Override
+    public void addProductsToUserCart(String userName, Long productId) {
+        orderDao.addProductsToUserCart(userName, productId);
+    }
+
 }

@@ -3,6 +3,7 @@ package com.company.dao;
 import com.company.dao.common.BaseDaoImpl;
 import com.company.entity.Product;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * Created by Kate M on 07.03.2018.
  */
 @Repository
+@Transactional
 public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 
     @Override

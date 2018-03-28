@@ -2,6 +2,15 @@
 
 <div class="container">
 
+    <c:if test="${not empty message}">
+        <div class="col-xs-12">
+            <div class="alert alert-warning  alert-dismissible " id="success-alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    ${message}
+            </div>
+        </div>
+    </c:if>
+
 
     <c:choose>
 
@@ -36,14 +45,16 @@
                         </td>
                         <td data-th="Price">&#36; ${product.key.price}</td>
                         <td data-th="Quantity">
-                            <input type="number"id="count_${product.key.id}" min="1" max="${product.key.amountAvailable}" class="form-control text-center" value=${product.value}>
+                            <input type="number" id="count_${product.key.id}" min="1"
+                                   max="${product.key.amountAvailable}" class="form-control text-center"
+                                   value=${product.value}>
                         </td>
                         <td data-th="Subtotal" class="text-center">${product.key.price*product.value}</td>
                         <td class="actions" data-th="">
-                            <button type="button" name="refreshCart" value="${product.key.id}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-refresh"></span>
-                            </button>
-                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>
-                            </button>
+                            <button type="button" name="refreshCart" value="${product.key.id}"
+                                    class="btn btn-info btn-sm"><span class="glyphicon glyphicon-refresh"></span></button>
+                            <a href="${pageContext.request.contextPath}/cart/${product.key.id}/delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </td>
                     </tr>
                 </c:forEach>

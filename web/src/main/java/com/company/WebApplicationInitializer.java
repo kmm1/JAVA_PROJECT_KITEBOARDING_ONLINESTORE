@@ -3,6 +3,7 @@ package com.company;
 import com.company.config.SecurityConfig;
 import com.company.config.ServiceConfig;
 import com.company.config.WebConfig;
+import com.company.filter.EncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;

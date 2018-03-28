@@ -4,6 +4,7 @@ import com.company.entity.BaseEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by Kate M on 06.03.2018.
  */
+@Transactional
 public abstract class BaseDaoImpl<T extends BaseEntity> implements BaseDao<T> {
 
     @Autowired

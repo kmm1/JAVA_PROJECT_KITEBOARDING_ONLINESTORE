@@ -1,4 +1,4 @@
-package com.company;
+package com.company.filter;
 
 
 import javax.servlet.*;
