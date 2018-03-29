@@ -51,8 +51,7 @@ public class CategoryDaoTest extends BaseDaoTest<Category> {
         Category category = categoryDao.findById(id);
         assertThat(category, notNullValue());
         categoryDao.delete(category);
-        Category category2 = categoryDao.findById(id);
-        assertThat(category2, nullValue());
+        assertThat(categoryDao.findById(id), nullValue());
     }
 
     @Test

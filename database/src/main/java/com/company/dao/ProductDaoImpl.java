@@ -11,7 +11,6 @@ import java.util.List;
  * Created by Kate M on 07.03.2018.
  */
 @Repository
-@Transactional
 public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 
     @Override

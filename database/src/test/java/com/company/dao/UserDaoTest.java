@@ -4,6 +4,9 @@ import com.company.dao.common.BaseDaoTest;
 import com.company.entity.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,75 +26,77 @@ public class UserDaoTest extends BaseDaoTest<User> {
     @Autowired
     private UserDao userDao;
 
+    @Bean
+    public static PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Test
     public void testFindUserById() {
-//        getTestDataImporter().importTestData();
-//        User user = userDao.findById(1L);
-//        assertThat(user, notNullValue());
-//        assertThat(user.getName(), is("admin"));
+        getTestDataImporter().importTestData();
+        User user = userDao.findById(1L);
+        assertThat(user, notNullValue());
+        assertThat(user.getName(), is("admin"));
     }
 
     @Test
     public void testSaveUser() {
-//        getTestDataImporter().importTestData();
-//        Long id = userDao.save(new User());
-//        User user = userDao.findById(id);
-//        assertThat(user, notNullValue());
+        getTestDataImporter().importTestData();
+        User user = new User();
+        user.setName("test");
+        user.setEmail("test@email.com");
+        user.setPassword(encoder().encode("test"));
+        Long id = userDao.save(user);
+        assertThat(userDao.findById(id), notNullValue());
+        assertThat(encoder().matches("test", userDao.findById(id).getPassword()), is(true));
     }
 
     @Test
     public void testDeleteUser() {
-//        getTestDataImporter().importTestData();
-//        Long id = userDao.save(new User());
-//        User user = userDao.findById(id);
-//        assertThat(user, notNullValue());
-//        userDao.delete(user);
-//        User user2 = userDao.findById(id);
-//        assertThat(user2, nullValue());
+        getTestDataImporter().importTestData();
+        Long id = 1L;
+        User user = userDao.findById(id);
+        assertThat(user, notNullValue());
+        userDao.delete(user);
+        assertThat(userDao.findById(id), nullValue());
     }
 
     @Test
     public void testFindAllUser() {
-//        getTestDataImporter().importTestData();
-//        List<User> allUsers = userDao.findAll();
-//        assertThat(allUsers, hasSize(3));
-//        List<String> list = allUsers.stream().map(e -> e.getName()).collect(Collectors.toList());
-//        assertThat(list, hasSize(3));
-//        assertThat(list, containsInAnyOrder("admin", "user1", "user2"));
+        getTestDataImporter().importTestData();
+        List<User> allUsers = userDao.findAll();
+        assertThat(allUsers, hasSize(3));
+        List<String> list = allUsers.stream().map(e -> e.getName()).collect(Collectors.toList());
+        assertThat(list, hasSize(3));
+        assertThat(list, containsInAnyOrder("admin", "user1", "user2"));
     }
 
     @Test
     public void testFindUserByName() {
-//        getTestDataImporter().importTestData();
-//        User user = userDao.getUserByName("user1");
-//        assertThat(user.getName(), is("user1"));
+        getTestDataImporter().importTestData();
+        User user = userDao.getUserByName("user1");
+        assertThat(user.getName(), is("user1"));
     }
 
     @Test
-    public void testFindUserByNameExpectingNull() {
-//        getTestDataImporter().importTestData();
-//        User user = userDao.getUserByName("");
-//        System.out.println("-------------------------------------------");
-//        System.out.println("------------------------" + user);
-//        System.out.println("-------------------------------------------");
-//        assertThat(user, nullValue());
+    public void testFindUserByNameEmptyValue() {
+        getTestDataImporter().importTestData();
+        User user = userDao.getUserByName("");
+        assertThat(user, notNullValue());
     }
 
     @Test
     public void testFindUserByEmail() {
-//        getTestDataImporter().importTestData();
-//        User user = userDao.getUserByEmail("km@gmail.com");
-//        assertThat(user.getEmail(), is("km@gmail.com"));
+        getTestDataImporter().importTestData();
+        User user = userDao.getUserByEmail("km@gmail.com");
+        assertThat(user.getEmail(), is("km@gmail.com"));
     }
 
     @Test
-    public void testFindUserByEmailExpectingNull() {
-//        getTestDataImporter().importTestData();
-//        User user = userDao.getUserByEmail("");
-//        System.out.println("-------------------------------------------");
-//        System.out.println("------------------------" + user.getEmail());
-//        System.out.println("-------------------------------------------");
-//        assertThat(user, nullValue());
+    public void testFindUserByEmailEmptyValue() {
+        getTestDataImporter().importTestData();
+        User user = userDao.getUserByEmail("");
+        assertThat(user, notNullValue());
     }
 
 }

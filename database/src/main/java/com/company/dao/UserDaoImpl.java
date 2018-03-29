@@ -11,7 +11,6 @@ import java.util.List;
  * Created by Kate M on 05.03.2018.
  */
 @Repository
-@Transactional
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
     @Override

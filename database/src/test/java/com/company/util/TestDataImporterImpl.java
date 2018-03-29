@@ -24,15 +24,15 @@ public final class TestDataImporterImpl implements TestDataImporter {
 
     public void importTestData() {
         Session session = sessionFactory.getCurrentSession();
-        User admin = saveUser(session, "admin", "km@gmail.com", "1", EnumRole.ADMIN, LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON));
-        User user1 = saveUser(session, "user1", "user1@gmail.com", "1", EnumRole.USER, LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON));
-        User user2 = saveUser(session, "user2", "user2@gmail.com", "1", EnumRole.USER, LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON));
+        User admin = saveUser(session, "admin", "km@gmail.com", "$2a$10$mJ9BoO..coAAIAl.KKrHluCx/pgPN18VkPzJ7m/osxJebvbQEX20W", EnumRole.ADMIN, LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON));
+        User user1 = saveUser(session, "user1", "user1@gmail.com", "$2y$10$IGTq0DH1xZtFwK/KK4nE2.c3ouv5bWIWV4DL.asenzYAy6yxAVbve", EnumRole.USER, LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON));
+        User user2 = saveUser(session, "user2", "user2@gmail.com", "$2y$10$IGTq0DH1xZtFwK/KK4nE2.c3ouv5bWIWV4DL.asenzYAy6yxAVbve", EnumRole.USER, LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON));
 
         saveAddress(session, "Ivan", "Ivanov", "addressLineOne", "addressLineTwo",
                 "Minsk", "Minsk region", EnumCountry.BELARUS,
                 "220057", "+375296000000",
                 "", user1);
-        saveAddress(session, "Lena", "Shmudenkova", "addressLineOne", "addressLineTwo",
+        saveAddress(session, "Petr", "Petrov", "addressLineOne", null,
                 "Mogilev", "Mogilev region", EnumCountry.BELARUS,
                 "220000", "+375447000000",
                 "", user2);
@@ -49,6 +49,8 @@ public final class TestDataImporterImpl implements TestDataImporter {
         Product kiteboardTrideNBL = saveProduct(session, "Tride-NBL", "The NBL is the classic, all-round Nobile board", 479.00, 2, true, "tride-nbl_01.jpg", categoryKiteboard);
 
         saveOrder(session, user1, new ArrayList(Arrays.asList(kite50Fifty, kite50Fifty, kiteboardTrideNBL)), LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON), EnumOrderStatus.NEW);
+        saveOrder(session, user2, new ArrayList(Arrays.asList()), LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON), EnumOrderStatus.NEW);
+
         saveOrder(session, user2, new ArrayList(Arrays.asList(kiteMrBig)), LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON), EnumOrderStatus.PAID);
         saveOrder(session, user1, new ArrayList(Arrays.asList(kite50Fifty)), LocalDateTime.of(LocalDate.of(2018, Month.JANUARY, 01), LocalTime.NOON), EnumOrderStatus.PAID);
 
@@ -74,13 +76,13 @@ public final class TestDataImporterImpl implements TestDataImporter {
         Address address = new Address();
         address.setRecieverName(recieverFirstName);
         address.setRecieverLastName(recieverLastName);
-        address.setAddressLineOne("AddressLineOne");
-        address.setAddressLineTwo("AddressLineTwo");
-        address.setCity("Minsk");
-        address.setState("Minsk region");
+        address.setAddressLineOne(addressLineTwo);
+        address.setAddressLineTwo(addressLineOne);
+        address.setCity(city);
+        address.setState(state);
         address.setCountry(EnumCountry.BELARUS);
-        address.setZip("220057");
-        address.setTelephone("+375296000000");
+        address.setZip(zip);
+        address.setTelephone(telephone);
         address.setAdditionalInfo(additionalInfo);
         address.setUser(user);
         session.save(address);

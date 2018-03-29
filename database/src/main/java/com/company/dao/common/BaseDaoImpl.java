@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Created by Kate M on 06.03.2018.
  */
-@Transactional
 public abstract class BaseDaoImpl<T extends BaseEntity> implements BaseDao<T> {
 
     @Autowired

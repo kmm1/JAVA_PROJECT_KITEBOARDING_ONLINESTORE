@@ -18,7 +18,6 @@ import java.util.TreeMap;
  * Created by Kate M on 07.03.2018.
  */
 @Repository
-@Transactional
 public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
 
 

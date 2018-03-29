@@ -28,7 +28,6 @@ public class ReviewDaoTest extends BaseDaoTest<Review> {
     @Autowired
     private UserDao userDao;
 
-
     @Test
     public void testFindReviewById() {
         getTestDataImporter().importTestData();

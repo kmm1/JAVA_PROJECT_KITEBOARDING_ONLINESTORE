@@ -32,7 +32,6 @@ public class ProductDaoTest extends BaseDaoTest<Product> {
         assertThat(category, notNullValue());
     }
 
-
     @Test
     public void testSaveProduct() {
         getTestDataImporter().importTestData();
