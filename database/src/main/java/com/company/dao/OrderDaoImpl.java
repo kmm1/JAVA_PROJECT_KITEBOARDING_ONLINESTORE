@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by Kate M on 07.03.2018.
@@ -64,7 +64,7 @@ public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
                 .setParameter("id", id)
                 .setParameter("status", EnumOrderStatus.NEW)
                 .getResultList();
-        Map<Product, Integer> map = new HashMap<>();
+        Map<Product, Integer> map = new TreeMap<>();
         for (Product product : productList) {
             Integer counter = map.get(product);
             map.put(product, map.get(product) == null ? 1 : map.get(product) + 1);

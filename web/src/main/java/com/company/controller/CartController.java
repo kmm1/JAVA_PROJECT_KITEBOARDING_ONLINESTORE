@@ -55,11 +55,13 @@ public class CartController {
 
     @GetMapping(path = "/show")
     public String showCart(@RequestParam(name = "update", required = false) String result, Model model) {
+        System.out.println("1111111111111111111111");
         if (result != null) {
             model.addAttribute("message", "The selected amount is too big. Cart cant be updated");
         }
         model.addAttribute("title", "User Cart");
         model.addAttribute("userClickShowCart", true);
+        System.out.println("333333333333333333333333333333333");
         return "index";
     }
 

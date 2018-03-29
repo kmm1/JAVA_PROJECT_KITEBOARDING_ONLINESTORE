@@ -19,7 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "product")
 @ToString(callSuper = true, exclude = {"reviews", "orders"})
-public class Product extends BaseEntity {
+public class Product extends BaseEntity implements Comparable<Product> { //<--dao TreeSet//
     @Getter
     @Setter
     @Column(name = "name", nullable = false, unique = true)
@@ -86,5 +86,11 @@ public class Product extends BaseEntity {
         this.availability = availability;
         this.imageURL = imageURL;
         this.category = category;
+    }
+
+
+    @Override
+    public int compareTo(Product p) {
+        return this.getName().compareTo(p.getName());
     }
 }
