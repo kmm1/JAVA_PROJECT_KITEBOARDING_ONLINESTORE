@@ -27,7 +27,6 @@ public class CategoryDaoTest extends BaseDaoTest<Category> {
 
     @Test
     public void testFindCategoryById() {
-        getTestDataImporter().importTestData();
         Category category = categoryDao.findById(1L);
         assertThat(category, notNullValue());
         assertThat(category, instanceOf(Category.class));
@@ -36,7 +35,6 @@ public class CategoryDaoTest extends BaseDaoTest<Category> {
 
     @Test
     public void testSaveCategory() {
-        getTestDataImporter().importTestData();
         Long id = categoryDao.save(new Category(EnumCategory.TEST));
         Category category = categoryDao.findById(id);
         assertThat(category, notNullValue());
@@ -46,7 +44,6 @@ public class CategoryDaoTest extends BaseDaoTest<Category> {
 
     @Test
     public void testDeleteCategory() {
-        getTestDataImporter().importTestData();
         Long id = categoryDao.save(new Category(EnumCategory.TEST));
         Category category = categoryDao.findById(id);
         assertThat(category, notNullValue());
@@ -56,7 +53,6 @@ public class CategoryDaoTest extends BaseDaoTest<Category> {
 
     @Test
     public void testFindAllCategory() {
-        getTestDataImporter().importTestData();
         List<Category> allCategories = categoryDao.findAll();
         assertThat(allCategories, hasSize(4));
         List<EnumCategory> list = allCategories.stream().map(e -> e.getEnumCategory()).collect(Collectors.toList());

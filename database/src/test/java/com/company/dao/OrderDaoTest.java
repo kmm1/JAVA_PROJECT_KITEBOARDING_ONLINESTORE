@@ -34,7 +34,6 @@ public class OrderDaoTest extends BaseDaoTest<Orders> {
 
     @Test
     public void testSaveOrder() {
-        getTestDataImporter().importTestData();
         Orders order = new Orders();
         order.setStatus(EnumOrderStatus.NEW);
         order.setUsers(userDao.findById(2L));
@@ -44,7 +43,6 @@ public class OrderDaoTest extends BaseDaoTest<Orders> {
 
     @Test
     public void testDeleteOrder() {
-        getTestDataImporter().importTestData();
         Long id = 1L;
         Orders order = orderDao.findById(id);
         Assert.assertThat(order, notNullValue());
@@ -54,35 +52,30 @@ public class OrderDaoTest extends BaseDaoTest<Orders> {
 
     @Test
     public void testFindAllOrders() {
-        getTestDataImporter().importTestData();
         List<Orders> allOrders = orderDao.findAll();
         Assert.assertThat(allOrders, hasSize(4));
     }
 
     @Test
     public void testCountProductsInCartByUserId() {
-        getTestDataImporter().importTestData();
         Long numberOfProductsInCort = orderDao.countProductsInCart(2L);
         assertThat(numberOfProductsInCort, is(3L));
     }
 
     @Test
     public void testFindUserCartByUserId() {
-        getTestDataImporter().importTestData();
         Double cartTotal = orderDao.findCartTotal(2L);
         assertThat(cartTotal, is(2717.00));
     }
 
     @Test
     public void testFindInfoAboutProductsInCartByUserId() {
-        getTestDataImporter().importTestData();
         Map<Product, Integer> productsInCart = orderDao.findInfoAboutProductsInCart(2L);
         assertThat(productsInCart, notNullValue());
     }
 
     @Test
     public void testUpdateProductsInUserCartByUserId() {
-        getTestDataImporter().importTestData();
         User user = userDao.findById(2L);
         Orders userCart = orderDao.findUserCart(user.getId());
         List<String> list = userCart.getProducts().stream().map(e -> e.getName()).collect(Collectors.toList());
@@ -96,7 +89,6 @@ public class OrderDaoTest extends BaseDaoTest<Orders> {
 
     @Test
     public void testDeleteProductFromUserCartByUserId() {
-        getTestDataImporter().importTestData();
         User user = userDao.findById(2L);
         Orders userCart = orderDao.findUserCart(user.getId());
         List<String> list = userCart.getProducts().stream().map(e -> e.getName()).collect(Collectors.toList());
@@ -110,7 +102,6 @@ public class OrderDaoTest extends BaseDaoTest<Orders> {
 
     @Test
     public void testAddProductsToUserCartByUserId() {
-        getTestDataImporter().importTestData();
         User user = userDao.findById(2L);
         Orders userCart = orderDao.findUserCart(user.getId());
         List<String> list = userCart.getProducts().stream().map(e -> e.getName()).collect(Collectors.toList());

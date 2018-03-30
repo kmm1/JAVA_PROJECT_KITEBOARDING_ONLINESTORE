@@ -33,7 +33,6 @@ public class UserDaoTest extends BaseDaoTest<User> {
 
     @Test
     public void testFindUserById() {
-        getTestDataImporter().importTestData();
         User user = userDao.findById(1L);
         assertThat(user, notNullValue());
         assertThat(user.getName(), is("admin"));
@@ -41,7 +40,6 @@ public class UserDaoTest extends BaseDaoTest<User> {
 
     @Test
     public void testSaveUser() {
-        getTestDataImporter().importTestData();
         User user = new User();
         user.setName("test");
         user.setEmail("test@email.com");
@@ -53,7 +51,6 @@ public class UserDaoTest extends BaseDaoTest<User> {
 
     @Test
     public void testDeleteUser() {
-        getTestDataImporter().importTestData();
         Long id = 1L;
         User user = userDao.findById(id);
         assertThat(user, notNullValue());
@@ -63,7 +60,6 @@ public class UserDaoTest extends BaseDaoTest<User> {
 
     @Test
     public void testFindAllUser() {
-        getTestDataImporter().importTestData();
         List<User> allUsers = userDao.findAll();
         assertThat(allUsers, hasSize(3));
         List<String> list = allUsers.stream().map(e -> e.getName()).collect(Collectors.toList());
@@ -73,30 +69,25 @@ public class UserDaoTest extends BaseDaoTest<User> {
 
     @Test
     public void testFindUserByName() {
-        getTestDataImporter().importTestData();
         User user = userDao.getUserByName("user1");
         assertThat(user.getName(), is("user1"));
     }
 
     @Test
     public void testFindUserByNameEmptyValue() {
-        getTestDataImporter().importTestData();
         User user = userDao.getUserByName("");
         assertThat(user, notNullValue());
     }
 
     @Test
     public void testFindUserByEmail() {
-        getTestDataImporter().importTestData();
         User user = userDao.getUserByEmail("km@gmail.com");
         assertThat(user.getEmail(), is("km@gmail.com"));
     }
 
     @Test
     public void testFindUserByEmailEmptyValue() {
-        getTestDataImporter().importTestData();
         User user = userDao.getUserByEmail("");
         assertThat(user, notNullValue());
     }
-
 }

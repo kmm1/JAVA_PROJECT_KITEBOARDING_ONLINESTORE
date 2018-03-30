@@ -3,6 +3,7 @@ package com.company.dao.common;
 import com.company.config.TestConfig;
 import com.company.entity.BaseEntity;
 import com.company.util.TestDataImporter;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
@@ -21,6 +22,11 @@ public abstract class BaseDaoTest<T extends BaseEntity> {
 
     @Autowired
     private TestDataImporter testDataImporter;
+
+    @Before
+    public void initBD() {
+        getTestDataImporter().importTestData();
+    }
 
     protected TestDataImporter getTestDataImporter() {
         return testDataImporter;

@@ -30,7 +30,6 @@ public class ReviewDaoTest extends BaseDaoTest<Review> {
 
     @Test
     public void testFindReviewById() {
-        getTestDataImporter().importTestData();
         Review review = reviewDao.findById(1L);
         assertThat(review, notNullValue());
         assertThat(review.getContent(), is("The best kite ever"));
@@ -38,7 +37,6 @@ public class ReviewDaoTest extends BaseDaoTest<Review> {
 
     @Test
     public void testSaveReview() {
-        getTestDataImporter().importTestData();
         Long id = reviewDao.save(new Review(userDao.findById(1L), productDao.findById(1L), "testComment", LocalDateTime.now()));
         Review category = reviewDao.findById(id);
         assertThat(category, notNullValue());
@@ -46,7 +44,6 @@ public class ReviewDaoTest extends BaseDaoTest<Review> {
 
     @Test
     public void testDeleteReview() {
-        getTestDataImporter().importTestData();
         Review review = reviewDao.findById(1L);
         assertThat(review, notNullValue());
         reviewDao.delete(review);
@@ -56,7 +53,6 @@ public class ReviewDaoTest extends BaseDaoTest<Review> {
 
     @Test
     public void testFindAllReview() {
-        getTestDataImporter().importTestData();
         List<Review> allReviews = reviewDao.findAll();
         List<String> list = allReviews.stream().map(e -> e.getContent()).collect(Collectors.toList());
         assertThat(list, hasSize(1));

@@ -23,7 +23,6 @@ public class AddressDaoTest extends BaseDaoTest<Address> {
 
     @Test
     public void testFindAddressById() {
-        getTestDataImporter().importTestData();
         Address address = addressDao.findById(2L);
         assertThat(address, notNullValue());
         assertThat(address.getUser().getName(), is("user2"));
@@ -31,7 +30,6 @@ public class AddressDaoTest extends BaseDaoTest<Address> {
 
     @Test
     public void testSaveAddress() {
-        getTestDataImporter().importTestData();
         User user = userDao.findById(1L);
         Long id = addressDao.save(new Address());
         Address address = addressDao.findById(id);
@@ -40,7 +38,6 @@ public class AddressDaoTest extends BaseDaoTest<Address> {
 
     @Test
     public void testDeleteAddress() {
-        getTestDataImporter().importTestData();
         final Long id = 1L;
         Address address = addressDao.findById(id);
         assertThat(address, notNullValue());

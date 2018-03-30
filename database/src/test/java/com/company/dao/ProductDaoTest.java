@@ -27,14 +27,12 @@ public class ProductDaoTest extends BaseDaoTest<Product> {
 
     @Test
     public void testFindProductById() {
-        getTestDataImporter().importTestData();
         Product category = productDao.findById(1L);
         assertThat(category, notNullValue());
     }
 
     @Test
     public void testSaveProduct() {
-        getTestDataImporter().importTestData();
         Category category = categoryDao.findById(1L);
         Long id = productDao.save(new Product("TestProduct", "TestProductDescription", 100.00, 5, true, "no_image.png", category));
         Product product = productDao.findById(id);
@@ -43,7 +41,6 @@ public class ProductDaoTest extends BaseDaoTest<Product> {
 
     @Test
     public void testDeleteProduct() {
-        getTestDataImporter().importTestData();
         Product category = productDao.findById(1L);
         assertThat(category, notNullValue());
         productDao.delete(category);
@@ -53,12 +50,10 @@ public class ProductDaoTest extends BaseDaoTest<Product> {
 
     @Test
     public void testFindAllProducts() {
-        getTestDataImporter().importTestData();
         List<Product> allProducts = productDao.findAll();
         List<String> list = allProducts.stream().map(e -> e.getName()).collect(Collectors.toList());
         assertThat(list, hasSize(5));
         assertThat(list, containsInAnyOrder("50/FIFTY", "mr-big", "NO. 1", "T5", "Tride-NBL"));
     }
-
 }
 
