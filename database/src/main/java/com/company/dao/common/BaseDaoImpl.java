@@ -51,4 +51,5 @@ public abstract class BaseDaoImpl<T extends BaseEntity> implements BaseDao<T> {
     public List<T> findAll() {
         return sessionFactory.getCurrentSession().createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList();
     }
+
 }
