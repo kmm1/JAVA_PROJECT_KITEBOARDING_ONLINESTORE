@@ -1,23 +1,10 @@
-Kiteboarding SHOP - online coffee shop with a delivery support.
-The were used such technologies as: Java 8, Spring Core, Spring MVC, Spring Security, TomCat, Maven, Hibernate, Rest.
+Online Kiteboarding SHOP.
+Technologies: Java 8, Spring Core/MVC/Security, TomCat, Maven, Hibernate, Rest, Bootstrap, JSP, JUnit, Hamcrest, MySql.
 Three-model application.
 
-     Database layer:
-Generic Dao for Crud operations. Access to persistent storage, such as to a database (DAO).
-Hibernate ORM (Hibernate in short) was used as an object-relational mapping tool.
+Moduls:DAO, service, web layer.
+Generic Dao for Crud operations, Business logic incupsulation, transactions,
+MultipartResolver for uploading files, Global exception handler for custom error page, authentification and CSRF attack security, validation, BCrypt, code testing culture, Springboot UI, ect.
 
-     Service layer:
-Service layer encapsulates the application's business logic, controlling transactions and coor-dinating responses in the implementation of its operations.
-
-     Web layer:
-UI is developed includes Bootstrap.
-Thymeleaf is used as a modern server-side Java template engine for  web environments.
-Files are uploaded using MultipartResolver. 
-Custom error page was created by using Global exception handler.
-Autentificaution is creaded through Spring Security. Use login page to login. Use app is secure from CSRF.
-
-The culture of testing the code through JUnit, HamCrest is imposed. The H2database is selected as the testing base.
-
-Runs by deploying applications on Tomcat server. Database MySQL.
-Run shop.sql file before using.
-You can enter as an admin using login:admin, password:admin.
+Before using run shop.sql SQL File.
+Admin page: login:admin, password:admin.
